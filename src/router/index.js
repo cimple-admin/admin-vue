@@ -11,6 +11,12 @@ const router = createRouter({
       component: () => import('../views/auth/Login.vue'),
       meta: {title: "登录"}
     },
+    {
+      path: '/register',
+      name: 'Register',
+      component: () => import('../views/auth/Register.vue'),
+      meta: {title: "注册"}
+    },
     ...needAuth
   ]
 })

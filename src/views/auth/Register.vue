@@ -4,7 +4,7 @@
             <a-row align="middle" class="full-height">
                 <a-col span="6" offset="9">
                     <a-typography>
-                        <a-typography-title class="text-center">登录</a-typography-title>
+                        <a-typography-title class="text-center">注册</a-typography-title>
                     </a-typography>
                     <a-form layout="vertical" :model="formState" name="basic" autocomplete="off" @finish="onFinish"
                         @finishFailed="onFinishFailed">
@@ -18,13 +18,10 @@
 
                         <a-flex justify="space-between">
                             <a-form-item>
-                                <a-checkbox v-model:checked="formState.remember">Remember me</a-checkbox>
+                                <a-checkbox v-model:checked="formState.remember">记住我</a-checkbox>
                             </a-form-item>
 
-                            <a-flex gap="small">
-                                <a-button type="link" @click="toLogin">还没有账号？注册</a-button>
-                                <a-button type="primary" html-type="submit">登录</a-button>
-                            </a-flex>
+                            <a-button type="primary" html-type="submit">登录</a-button>
                         </a-flex>
                     </a-form>
                 </a-col>
@@ -35,8 +32,6 @@
 </template>
 <script setup>
 import { reactive } from 'vue';
-import { useRouter, useRoute } from 'vue-router'
-
 const formState = reactive({
     email: '',
     password: '',
@@ -48,10 +43,4 @@ const onFinish = values => {
 const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
 };
-
-const route = useRoute()
-const router = useRouter()
-function toLogin() {
-    router.push({name: "Register", query: {redirect: route.query.redirect}})
-}
 </script>
