@@ -1,6 +1,6 @@
 <template>
     <a-layout>
-        <a-layout-content style="background-color: #fff;">
+        <a-layout-content style="background-color: #fff;margin-top: -50px;">
             <a-row align="middle" class="full-height">
                 <a-col span="6" offset="9">
                     <a-typography>
@@ -8,14 +8,14 @@
                     </a-typography>
                     <a-form layout="vertical" :model="formState" name="basic" autocomplete="off" @finish="onFinish"
                         @finishFailed="onFinishFailed">
-                        <a-form-item label="Username" name="username"
-                            :rules="[{ required: true, message: 'Please input your username!' }]">
-                            <a-input v-model:value="formState.username" />
+                        <a-form-item label="邮箱" name="email"
+                            :rules="[{ required: true, message: '请输入邮箱!' }]">
+                            <a-input v-model:value="formState.email" placeholder="请输入邮箱" />
                         </a-form-item>
 
-                        <a-form-item label="Password" name="password"
-                            :rules="[{ required: true, message: 'Please input your password!' }]">
-                            <a-input-password v-model:value="formState.password" />
+                        <a-form-item label="密码" name="password"
+                            :rules="[{ required: true, message: '请输入密码!' }]">
+                            <a-input-password v-model:value="formState.password" placeholder="请输入密码" />
                         </a-form-item>
 
                         <a-flex justify="space-between">
@@ -37,7 +37,7 @@
 <script setup>
 import { reactive } from 'vue';
 const formState = reactive({
-    username: '',
+    email: '',
     password: '',
     remember: true,
 });
