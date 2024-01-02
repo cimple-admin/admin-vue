@@ -1,6 +1,6 @@
 <template>
     <a-layout>
-        <a-layout-content style="background-color: #fff;margin-top: -50px;">
+        <a-layout-content style="background-color: #fff; margin-top: -50px">
             <a-row align="middle" class="full-height">
                 <a-col span="6" offset="9">
                     <a-typography>
@@ -22,36 +22,31 @@
                             </a-form-item>
 
                             <a-flex gap="small">
-                                <a-button type="link" @click="toLogin">还没有账号？注册</a-button>
+                                <router-link :to="{ name: 'Register', query: { redirect: $route.query.redirect } }" v-slot="{ navigate }">
+                                    <a-button type="link" @click="navigate">还没有账号？注册</a-button>
+                                </router-link>
                                 <a-button type="primary" html-type="submit">登录</a-button>
                             </a-flex>
                         </a-flex>
                     </a-form>
                 </a-col>
             </a-row>
-
         </a-layout-content>
     </a-layout>
 </template>
 <script setup>
-import { reactive } from 'vue';
-import { useRouter, useRoute } from 'vue-router'
+import { reactive } from "vue";
+import { useRouter, useRoute } from "vue-router";
 
 const formState = reactive({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     remember: true,
 });
-const onFinish = values => {
-    console.log('Success:', values);
+const onFinish = (values) => {
+    console.log("Success:", values);
 };
-const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
+const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
 };
-
-const route = useRoute()
-const router = useRouter()
-function toLogin() {
-    router.push({name: "Register", query: {redirect: route.query.redirect}})
-}
 </script>

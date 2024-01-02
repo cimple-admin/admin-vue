@@ -21,7 +21,7 @@
                                 <a-checkbox v-model:checked="formState.remember">记住我</a-checkbox>
                             </a-form-item>
 
-                            <a-button type="primary" html-type="submit">登录</a-button>
+                            <a-button type="primary" html-type="submit">注册</a-button>
                         </a-flex>
                     </a-form>
                 </a-col>
