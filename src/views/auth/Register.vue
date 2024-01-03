@@ -6,8 +6,7 @@
                     <a-typography>
                         <a-typography-title class="text-center">注册</a-typography-title>
                     </a-typography>
-                    <a-form layout="vertical" :model="formState" name="basic" autocomplete="off" @finish="onFinish"
-                        @finishFailed="onFinishFailed">
+                    <a-form layout="vertical" :model="formState" name="basic" autocomplete="off" @finish="onFinish">
                         <a-form-item label="邮箱" name="email" :rules="[{ required: true, message: '请输入邮箱!' }]">
                             <a-input v-model:value="formState.email" placeholder="请输入邮箱" />
                         </a-form-item>
@@ -16,11 +15,11 @@
                             <a-input-password v-model:value="formState.password" placeholder="请输入密码" />
                         </a-form-item>
 
-                        <a-flex justify="space-between">
-                            <a-form-item>
-                                <a-checkbox v-model:checked="formState.remember">记住我</a-checkbox>
-                            </a-form-item>
+                        <a-form-item label="确认密码" name="confirm_password" :rules="[{ required: true, message: '请输入密码!' }]">
+                            <a-input-password v-model:value="formState.confirm_password" placeholder="请输入密码" />
+                        </a-form-item>
 
+                        <a-flex justify="end">
                             <a-button type="primary" html-type="submit">注册</a-button>
                         </a-flex>
                     </a-form>
@@ -31,16 +30,32 @@
     </a-layout>
 </template>
 <script setup>
+import { register } from '@/api/user';
 import { reactive } from 'vue';
+import { notification } from 'ant-design-vue';
+
 const formState = reactive({
     email: '',
     password: '',
-    remember: true,
+    confirm_password: '',
 });
+
+function showRegError(message) {
+    notification.error({
+        message: '注册失败',
+        description: message,
+    });
+}
+
 const onFinish = values => {
-    console.log('Success:', values);
-};
-const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
+    register(values).then(resp => {
+        console.log(resp)
+        if (resp.data.status < 0) {
+            showRegError(resp.data.message)
+        }
+    }).catch(function (error) {
+        console.log(error)
+        showRegError(error)
+    });;
 };
 </script>
