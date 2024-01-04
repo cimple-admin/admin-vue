@@ -22,9 +22,7 @@
                             </a-form-item>
 
                             <a-flex gap="small">
-                                <router-link :to="{ name: 'Register', query: { redirect: $route.query.redirect } }" v-slot="{ navigate }">
-                                    <a-button type="link" @click="navigate">还没有账号？注册</a-button>
-                                </router-link>
+                                <link-button :to="{ name: 'Register', query: { redirect: $route.query.redirect } }" name="还没有账号？注册"/>
                                 <a-button type="primary" html-type="submit">登录</a-button>
                             </a-flex>
                         </a-flex>
@@ -35,6 +33,7 @@
     </a-layout>
 </template>
 <script setup>
+import LinkButton from "@/components/LinkButton.vue";
 import { reactive } from "vue";
 import { useRouter, useRoute } from "vue-router";
 
