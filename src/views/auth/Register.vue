@@ -31,7 +31,7 @@
     </a-layout>
 </template>
 <script setup>
-import { register } from '@/api/user';
+import { register } from '@/api/auth';
 import { reactive } from 'vue';
 import { notification } from 'ant-design-vue';
 import { useUserStore } from '@/stores/user';

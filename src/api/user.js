@@ -1,11 +1,5 @@
-import { instance } from "./request";
+import { instance, withAuthHeader } from "./request";
 
-
-
-export function register(userForm) {
-    return instance.post('/register', userForm)
-}
-
-export function login(userForm) {
-  return instance.post('/login', userForm)
+export function info() {
+  return withAuthHeader(instance).get("/user");
 }

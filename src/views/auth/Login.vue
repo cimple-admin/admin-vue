@@ -34,7 +34,7 @@
 <script setup>
 import LinkButton from "@/components/LinkButton.vue";
 import { reactive } from "vue";
-import { login } from '@/api/user';
+import { login } from '@/api/auth';
 import { notification } from 'ant-design-vue';
 import { useUserStore } from "@/stores/user";
 import { useRouter, useRoute } from 'vue-router';
