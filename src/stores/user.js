@@ -12,9 +12,9 @@ export const useUserStore = defineStore("user", {
     isLogin() {
       if (this.token.length == 0) {
         // store 本体没有数据的时候读cookie
-        const cookieToken = Cookies.get('token')
+        const cookieToken = Cookies.get('token');
         if ((cookieToken != undefined)) {
-          this.token = cookieToken
+          this.token = cookieToken;
         }
       }
 
@@ -23,8 +23,12 @@ export const useUserStore = defineStore("user", {
   },
   actions: {
     login(token) {
-      this.token = token
-      Cookies.set('token', token)
+      this.token = token;
+      Cookies.set('token', token);
     },
+    logout() {
+      this.token = '';
+      Cookies.remove('token');
+    }
   },
 });
