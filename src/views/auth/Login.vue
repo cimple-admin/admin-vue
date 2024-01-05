@@ -6,8 +6,7 @@
                     <a-typography>
                         <a-typography-title class="text-center">登录</a-typography-title>
                     </a-typography>
-                    <a-form layout="vertical" :model="formState" name="basic" autocomplete="off" @finish="onFinish"
-                        @finishFailed="onFinishFailed">
+                    <a-form layout="vertical" :model="formState" name="basic" autocomplete="off" @finish="onFinish" >
                         <a-form-item label="邮箱" name="email" :rules="[{ required: true, message: '请输入邮箱!' }]">
                             <a-input v-model:value="formState.email" placeholder="请输入邮箱" />
                         </a-form-item>
@@ -16,10 +15,10 @@
                             <a-input-password v-model:value="formState.password" placeholder="请输入密码" />
                         </a-form-item>
 
-                        <a-flex justify="space-between">
-                            <a-form-item>
-                                <a-checkbox v-model:checked="formState.remember">Remember me</a-checkbox>
-                            </a-form-item>
+                        <a-flex justify="end">
+                            <!-- <a-form-item>
+                                <a-checkbox v-model:checked="formState.remember">记住我</a-checkbox>
+                            </a-form-item> -->
 
                             <a-flex gap="small">
                                 <link-button :to="{ name: 'Register', query: { redirect: $route.query.redirect } }" name="还没有账号？注册"/>
@@ -40,12 +39,9 @@ import { useRouter, useRoute } from "vue-router";
 const formState = reactive({
     email: "",
     password: "",
-    remember: true,
+    // remember: true,
 });
 const onFinish = (values) => {
     console.log("Success:", values);
-};
-const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
 };
 </script>

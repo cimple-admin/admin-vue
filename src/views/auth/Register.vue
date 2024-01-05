@@ -7,7 +7,7 @@
                         <a-typography-title class="text-center">注册</a-typography-title>
                     </a-typography>
                     <a-form :rules="rules" layout="vertical" :model="formState" name="basic" autocomplete="off"
-                        @finish="onFinish">
+                        @submit="onRegister">
                         <a-form-item label="邮箱" name="email">
                             <a-input v-model:value="formState.email" placeholder="请输入邮箱" />
                         </a-form-item>
@@ -123,9 +123,8 @@ const rules = {
 const router = useRouter();
 const route = useRoute();
 
-const onFinish = values => {
-    register(values).then(resp => {
-        console.log(resp)
+const onRegister = e => {
+    register({ ...formState }).then(resp => {
         if (resp.data.status < 0) {
             showRegError(resp.data.message)
         } else {
@@ -142,6 +141,6 @@ const onFinish = values => {
         }
     }).catch(function (error) {
         showRegError(error)
-    });;
+    });
 };
 </script>
