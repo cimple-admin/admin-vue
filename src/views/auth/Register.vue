@@ -136,13 +136,11 @@ const onFinish = values => {
                 description: '恭喜您注册成功',
                 duration: 3,
                 onClose: () => {
-                    console.log("closed")
                     router.push({path: route.query.redirect})
                 }
             });
         }
     }).catch(function (error) {
-        console.log(error)
         showRegError(error)
     });;
 };
