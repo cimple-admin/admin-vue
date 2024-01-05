@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { defineStore } from "pinia";
 
 // 你可以对 `defineStore()` 的返回值进行任意命名，但最好使用 store 的名字，同时以 `use` 开头且以 `Store` 结尾。(比如 `useUserStore`，`useCartStore`，`useProductStore`)
@@ -5,11 +6,25 @@ import { defineStore } from "pinia";
 export const useUserStore = defineStore("user", {
   // 其他配置...
   state: () => ({
-    uid: 0,
+    token: '',
   }),
   getters: {
     isLogin() {
-      return this.uid > 0;
+      if (this.token.length == 0) {
+        // store 本体没有数据的时候读cookie
+        const cookieToken = Cookies.get('token')
+        if ((cookieToken != undefined)) {
+          this.token = cookieToken
+        }
+      }
+
+      return this.token.length > 0;
+    },
+  },
+  actions: {
+    login(token) {
+      this.token = token
+      Cookies.set('token', token)
     },
   },
 });

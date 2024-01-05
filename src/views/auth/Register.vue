@@ -34,6 +34,10 @@
 import { register } from '@/api/user';
 import { reactive } from 'vue';
 import { notification } from 'ant-design-vue';
+import { useUserStore } from '@/stores/user';
+import { useRouter, useRoute } from 'vue-router';
+
+const userStore = useUserStore();
 
 const formState = reactive({
     email: '',
@@ -47,6 +51,8 @@ function showRegError(message) {
         description: message,
     });
 }
+
+
 
 const validatePass = async (_rule, value) => {
     if (!value.match(/[A-Z]+/)) {
@@ -114,11 +120,26 @@ const rules = {
     ],
 };
 
+const router = useRouter();
+const route = useRoute();
+
 const onFinish = values => {
     register(values).then(resp => {
         console.log(resp)
         if (resp.data.status < 0) {
             showRegError(resp.data.message)
+        } else {
+            // TODO 注册成功后的提示和跳转
+            userStore.login(resp.data.data)
+            notification.success({
+                message: '注册成功',
+                description: '恭喜您注册成功',
+                duration: 3,
+                onClose: () => {
+                    console.log("closed")
+                    router.push({path: route.query.redirect})
+                }
+            });
         }
     }).catch(function (error) {
         console.log(error)
