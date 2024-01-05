@@ -135,7 +135,7 @@ const onRegister = e => {
                 description: '恭喜您注册成功',
                 duration: 3,
                 onClose: () => {
-                    router.push({path: route.query.redirect})
+                    router.push({path: route.query.redirect ?? '/'})
                 }
             });
         }

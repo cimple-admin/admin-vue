@@ -1,10 +1,11 @@
-import axios from "axios";
+import { instance } from "./request";
 
-const instance = axios.create({
-    baseURL: 'http://127.0.0.1:3000',
-    timeout: 1000,
-  });
+
 
 export function register(userForm) {
     return instance.post('/register', userForm)
+}
+
+export function login(userForm) {
+  return instance.post('/login', userForm)
 }

@@ -6,7 +6,7 @@
                     <a-typography>
                         <a-typography-title class="text-center">登录</a-typography-title>
                     </a-typography>
-                    <a-form layout="vertical" :model="formState" name="basic" autocomplete="off" @finish="onFinish" >
+                    <a-form layout="vertical" :model="formState" name="basic" autocomplete="off" @submit="onLogin" >
                         <a-form-item label="邮箱" name="email" :rules="[{ required: true, message: '请输入邮箱!' }]">
                             <a-input v-model:value="formState.email" placeholder="请输入邮箱" />
                         </a-form-item>
@@ -34,14 +34,45 @@
 <script setup>
 import LinkButton from "@/components/LinkButton.vue";
 import { reactive } from "vue";
-import { useRouter, useRoute } from "vue-router";
+import { login } from '@/api/user';
+import { notification } from 'ant-design-vue';
+import { useUserStore } from "@/stores/user";
+import { useRouter, useRoute } from 'vue-router';
 
 const formState = reactive({
     email: "",
     password: "",
     // remember: true,
 });
-const onFinish = (values) => {
-    console.log("Success:", values);
+
+function showError(message) {
+    notification.error({
+        message: '登录失败',
+        description: message,
+    });
+}
+const userStore = useUserStore();
+const router = useRouter();
+const route = useRoute();
+
+const onLogin = (e) => {
+    login({ ...formState }).then(resp => {
+        if (resp.data.status < 0) {
+            showError(resp.data.message)
+        } else {
+            console.log(resp.data.data)
+            userStore.login(resp.data.data)
+            notification.success({
+                message: '登录成功',
+                description: '登录成功，即将跳转',
+                duration: 3,
+                onClose: () => {
+                    router.push({path: route.query.redirect ?? '/'})
+                }
+            });
+        }
+    }).catch(function (error) {
+        showError(error)
+    });
 };
 </script>
