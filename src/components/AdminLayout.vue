@@ -36,7 +36,7 @@
 
             </a-layout-header>
             <a-layout-content :style="{ margin: '0px', padding: '24px', background: '#fff', minHeight: '280px' }">
-                <slot />
+                <RouterView />
             </a-layout-content>
         </a-layout>
     </a-layout>

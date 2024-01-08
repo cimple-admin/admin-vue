@@ -1,28 +1,26 @@
 <template>
-    <AdminLayout>
-        Content
-                Admin Home
-                Admin Home
-                Admin Home
-                Admin Home
-                Admin Home
-                Admin Home
-                Admin Home
-                Admin Home
-                Admin Home
-                Admin Home
-                Admin Home
-                Admin Home
-                Admin Home
-                Admin Home
-                Admin Home
-                Admin Home
-                Admin Home
-                Admin Home
-                Admin Home
-                Admin Home
-                <a-button type="primary" @click="logout">退出登录</a-button>
-    </AdminLayout>
+    Content
+    Admin Home
+    Admin Home
+    Admin Home
+    Admin Home
+    Admin Home
+    Admin Home
+    Admin Home
+    Admin Home
+    Admin Home
+    Admin Home
+    Admin Home
+    Admin Home
+    Admin Home
+    Admin Home
+    Admin Home
+    Admin Home
+    Admin Home
+    Admin Home
+    Admin Home
+    Admin Home
+    <a-button type="primary" @click="logout">退出登录</a-button>
 </template>
 <script setup>
 import AdminLayout from "@/components/AdminLayout.vue"

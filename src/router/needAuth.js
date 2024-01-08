@@ -1,8 +1,10 @@
+import AdminLayoutVue from "@/components/AdminLayout.vue";
 import Home from "@/views/Home.vue";
 
 export default [
   {
     path: "/",
+    component: AdminLayoutVue,
     children: [
       {
         path: "/",
