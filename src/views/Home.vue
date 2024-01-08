@@ -1,6 +1,6 @@
 <template>
     <a-layout style="height: 100vh;">
-        <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
+        <a-layout-sider breakpoint="lg" v-model:collapsed="collapsed" :trigger="null" collapsible>
             <div class="logo" />
             <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
                 <a-menu-item key="1">
