@@ -12,25 +12,7 @@
                         <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
                     </div>
                     <div style="padding-right: 24px;">
-                        <a-dropdown>
-                            <a class="ant-dropdown-link" @click.prevent>
-                                Hover me
-                                <DownOutlined />
-                            </a>
-                            <template #overlay>
-                                <a-menu>
-                                    <a-menu-item>
-                                        <a href="javascript:;">1st menu item</a>
-                                    </a-menu-item>
-                                    <a-menu-item>
-                                        <a href="javascript:;">2nd menu item</a>
-                                    </a-menu-item>
-                                    <a-menu-item>
-                                        <a href="javascript:;">3rd menu item</a>
-                                    </a-menu-item>
-                                </a-menu>
-                            </template>
-                        </a-dropdown>
+                        <UserInfo />
                     </div>
                 </a-flex>
 
@@ -42,11 +24,15 @@
     </a-layout>
 </template>
 <script setup>
-import { MenuUnfoldOutlined, MenuFoldOutlined, DownOutlined} from '@ant-design/icons-vue';
-
+import { MenuUnfoldOutlined, MenuFoldOutlined} from '@ant-design/icons-vue';
+import UserInfo from './layout/header/UserInfo.vue';
+import SliderMenus from './layout/slider/SliderMenus.vue';
 import { ref } from 'vue';
-import SliderMenus from './SliderMenus.vue';
 const collapsed = ref(false);
+
+
+
+
 </script>
 <style>
 .trigger {

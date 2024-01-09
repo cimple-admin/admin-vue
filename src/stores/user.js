@@ -7,6 +7,10 @@ export const useUserStore = defineStore("user", {
   // 其他配置...
   state: () => ({
     token: '',
+    uid: 0,
+    name: '',
+    email: '',
+    cover: '',
   }),
   getters: {
     isLogin() {
@@ -29,6 +33,12 @@ export const useUserStore = defineStore("user", {
     logout() {
       this.token = '';
       Cookies.remove('token');
-    }
+    },
+    setInfo(uid, email, name, cover) {
+      this.uid = uid;
+      this.email = email;
+      this.name = name;
+      this.cover = cover;
+    },
   },
 });
