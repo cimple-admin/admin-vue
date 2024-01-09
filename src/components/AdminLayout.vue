@@ -1,7 +1,7 @@
 <template>
-    <a-layout style="height: 100vh;">
+    <a-layout class="layout">
         <a-layout-sider breakpoint="lg" v-model:collapsed="collapsed" :trigger="null" collapsible>
-            <div class="logo" />
+            <div class="title">Cimple Admin</div>
             <SliderMenus></SliderMenus>
         </a-layout-sider>
         <a-layout>
@@ -17,7 +17,7 @@
                 </a-flex>
 
             </a-layout-header>
-            <a-layout-content :style="{ margin: '0px', padding: '24px', background: '#fff', minHeight: '280px' }">
+            <a-layout-content class="content">
                 <RouterView />
             </a-layout-content>
         </a-layout>
@@ -29,12 +29,16 @@ import UserInfo from './layout/header/UserInfo.vue';
 import SliderMenus from './layout/slider/SliderMenus.vue';
 import { ref } from 'vue';
 const collapsed = ref(false);
-
-
-
-
 </script>
 <style>
+.layout {
+    height: 100vh;
+}
+.content {
+    margin: 0px;
+    padding: 24px;
+    background: #fff;
+}
 .trigger {
     font-size: 18px;
     line-height: 64px;
@@ -47,10 +51,12 @@ const collapsed = ref(false);
     color: #1890ff;
 }
 
-.logo {
+.title {
     height: 32px;
-    background: rgba(255, 255, 255, 0.3);
     margin: 16px;
+    font-size: 24px;
+    color: #f2f2f2;
+    overflow: hidden;
 }
 
 .site-layout .site-layout-background {
